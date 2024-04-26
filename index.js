@@ -27,6 +27,15 @@ async function run() {
 
     const touristSpotsCollection = client.db("touristSpotsDB").collection("touristSpots");
 
+    // get all tourist spots
+    app.get("/touristSpots", async(req, res) => {
+        const cursor = touristSpotsCollection.find();
+        const result = await cursor.toArray();
+        res.send(result);
+    })
+
+
+    // create user
     app.post("/touristSpots", async(req, res) => {
         const newTouristSpot = req.body;
         console.log(newTouristSpot);
