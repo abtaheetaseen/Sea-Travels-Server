@@ -35,11 +35,35 @@ async function run() {
     })
 
 
-    // create user
+    // create spot
     app.post("/touristSpots", async(req, res) => {
         const newTouristSpot = req.body;
         console.log(newTouristSpot);
         const result = await touristSpotsCollection.insertOne(newTouristSpot);
+        res.send(result);
+    })
+
+    // update spot
+    app.put("/touristSpots/:id", async(req, res) => {
+        const id = req.params.id;
+        const filter = {_id: new ObjectId(id)};
+        const options = {upsert: true};
+        const updatedTouristSpot = req.body;
+        const touristSpot = {
+            $set: {
+                photoURL: updatedTouristSpot.photoURL,
+                countryName: updatedTouristSpot.countryName,
+                touristSpotName: updatedTouristSpot.touristSpotName,
+                location: updatedTouristSpot.location,
+                description: updatedTouristSpot.description,
+                averageCost:updatedTouristSpot.description,
+                seasonality: updatedTouristSpot.seasonality,
+                travelTimeDays:updatedTouristSpot.travelTimeDays,
+                totalVisitorsPerYear: updatedTouristSpot.totalVisitorsPerYear
+            }
+        }
+
+        const result = await touristSpotsCollection.updateOne(filter, touristSpot, options);
         res.send(result);
     })
 
