@@ -56,7 +56,7 @@ async function run() {
                 touristSpotName: updatedTouristSpot.touristSpotName,
                 location: updatedTouristSpot.location,
                 description: updatedTouristSpot.description,
-                averageCost:updatedTouristSpot.description,
+                averageCost:updatedTouristSpot.averageCost,
                 seasonality: updatedTouristSpot.seasonality,
                 travelTimeDays:updatedTouristSpot.travelTimeDays,
                 totalVisitorsPerYear: updatedTouristSpot.totalVisitorsPerYear
