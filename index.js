@@ -89,6 +89,12 @@ async function run() {
         res.send(result)
     })
 
+    // get by country name
+    app.get("/country/:countryName", async(req, res) => {
+        const result = await touristSpotsCollection.find({countryName: req.params.countryName}).toArray()
+        res.send(result)
+    })
+
     // delete from my list
     app.delete("/touristSpots/:id", async(req, res) => {
         const result = await touristSpotsCollection.deleteOne({_id: new ObjectId(req.params.id)})
